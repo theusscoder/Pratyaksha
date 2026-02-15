@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratyaksha AI | Digital Shield</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #00050A;
+            /* Dark aesthetic */
+            color: #E2E8F0;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(52, 211, 153, 0.7), 0 0 20px rgba(52, 211, 153, 0.5);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 10px rgba(52, 211, 153, 0.3);
+            border: 1px solid rgba(52, 211, 153, 0.5);
+        }
+
+        .drop-zone {
+            transition: all 0.3s ease;
+        }
+
+        .drop-zone:hover {
+            border-color: #34D399;
+            background-color: rgba(52, 211, 153, 0.05);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #34D399;
+            border-radius: 4px;
+        }
+
+        .hidden-section {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav
+        class="w-full py-6 px-10 flex justify-between items-center z-50 border-b border-gray-800 bg-opacity-80 backdrop-blur-md fixed top-0 w-full">
+        <div class="text-2xl font-bold tracking-widest text-white flex items-center gap-2">
+            <div class="w-3 h-3 bg-green-400 rounded-full neon-border"></div> Pratyaksha AI
+        </div>
+        <div class="flex gap-8 text-sm uppercase tracking-wider text-gray-400">
+            <button onclick="showSection('home')" class="hover:text-green-400 transition-colors">Home</button>
+            <button onclick="showSection('protect')" class="hover:text-green-400 transition-colors">Protect</button>
+            <button onclick="showSection('verify')" class="hover:text-green-400 transition-colors">Verify</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-24 relaltive">
+
+        <!-- Background Elements -->
+        <div
+            class="fixed top-20 left-10 w-64 h-64 bg-green-500 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-pulse">
+        </div>
+        <div
+            class="fixed bottom-20 right-10 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-5">
+        </div>
+
+        <!-- HOME SECTION -->
+        <section id="home"
+            class="active-section container mx-auto px-6 py-12 text-center h-[80vh] flex flex-col justify-center items-center">
+            <div class="mb-4 text-green-400 text-sm font-semibold tracking-widest uppercase">Deepfake Detection &
+                Watermarking</div>
+            <h1
+                class="text-6xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
+                TEAM WIN DIESEL
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-10">
+                The Digital Shield for Content Authenticity using <span class="text-green-400">Robust DCT</span> & <span
+                    class="text-blue-400">Fragile LSB</span> Technology.
+            </p>
+            <div class="flex gap-6">
+                <button onclick="showSection('protect')"
+                    class="px-8 py-4 bg-green-500 text-black font-bold uppercase tracking-wider hover:bg-green-400 transition-all neon-border rounded-sm">
+                    Protect Media
+                </button>
+                <button onclick="showSection('verify')"
+                    class="px-8 py-4 border border-gray-600 hover:border-green-400 text-gray-300 hover:text-white transition-all rounded-sm uppercase tracking-wider">
+                    Verify Authenticity
+                </button>
+            </div>
+        </section>
+
+        <!-- PROTECT SECTION -->
+        <section id="protect" class="hidden-section container mx-auto px-6 py-12">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-2">Protect Your Media</h2>
+                <p class="text-gray-400 mb-8">Embed invisible, tamper-proof watermarks into your images.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- Upload Area -->
+                    <div class="bg-gray-900 bg-opacity-50 p-8 rounded-lg border border-gray-800 drop-zone flex flex-col justify-center items-center h-96 text-center cursor-pointer relative"
+                        id="protect-dropzone">
+                        <input type="file" id="protect-input"
+                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*">
+                        <div class="text-6xl text-gray-700 mb-4 icon-upload">📂</div>
+                        <h3 class="text-xl font-medium text-gray-300">Drag & Drop or Click to Upload</h3>
+                        <p class="text-gray-500 text-sm mt-2">Supports JPG, PNG, Video and Audio files</p>
+                    </div>
+
+                    <!-- Result Area -->
+                    <div class="bg-gray-900 bg-opacity-50 p-8 rounded-lg border border-gray-800 h-96 flex flex-col justify-center items-center relative hidden"
+                        id="protect-result">
+                        <img id="protected-image-preview" src="" alt="Protected"
+                            class="max-h-64 object-contain rounded-md mb-4 border border-green-500/50">
+                        <div class="flex gap-4">
+                            <span class="text-green-400 font-bold flex items-center gap-2">✔ Protected</span>
+                            <a id="download-link" href="#" download
+                                class="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-500">Download</a>
+                        </div>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div class="bg-gray-900 bg-opacity-50 p-8 rounded-lg border border-gray-800 h-96 flex justify-center items-center hidden"
+                        id="protect-loading">
+                        <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-500"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VERIFY SECTION -->
+        <section id="verify" class="hidden-section container mx-auto px-6 py-12">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold mb-2">Forensic Verification</h2>
+                <p class="text-gray-400 mb-8">Analyze images for deepfakes and broken digital seals.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- Upload Area -->
+                    <div class="bg-gray-900 bg-opacity-50 p-8 rounded-lg border border-gray-800 drop-zone flex flex-col justify-center items-center h-96 text-center cursor-pointer relative"
+                        id="verify-dropzone">
+                        <input type="file" id="verify-input"
+                            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/*">
+                        <div class="text-6xl text-gray-700 mb-4 icon-verify">🔍</div>
+                        <h3 class="text-xl font-medium text-gray-300">Analyze Suspicious Image</h3>
+                        <p class="text-gray-500 text-sm mt-2">Upload for scanning</p>
+                    </div>
+
+                    <!-- Report Area -->
+                    <div class="bg-gray-900 bg-opacity-50 p-6 rounded-lg border border-gray-800 h-auto min-h-96 hidden flex flex-col justify-between"
+                        id="verify-result">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">Forensic Report
+                            </h3>
+
+                            <div class="space-y-4">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-400">Overall Status</span>
+                                    <span id="report-status" class="font-bold text-green-400 text-lg">Authentic</span>
+                                </div>
+                                <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                                    <div id="confidence-bar" class="h-full bg-red-500 w-0 transition-all duration-1000">
+                                    </div>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span class="text-gray-500">Deepfake Probability</span>
+                                    <span id="report-confidence" class="text-white">0%</span>
+                                </div>
+
+                                <div class="bg-gray-800 p-4 rounded mt-4">
+                                    <div class="flex justify-between mb-2">
+                                        <span class="text-gray-400 text-sm">Digital Seal (Fragile LSB)</span>
+                                        <span id="report-seal" class="text-green-400 text-sm font-mono">INTACT</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-400 text-sm">Watermark Type</span>
+                                        <span class="text-blue-400 text-sm font-mono">DCT-ROBUST</span>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 text-xs text-gray-500 font-mono">
+                                    Scan ID: <span id="scan-id">#PRATYAKSHA-8392</span><br>
+                                    Timestamp: <span id="scan-time">Now</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Loading State -->
+                    <div class="bg-gray-900 bg-opacity-50 p-8 rounded-lg border border-gray-800 h-96 flex justify-center items-center hidden"
+                        id="verify-loading">
+                        <div class="flex flex-col items-center gap-4">
+                            <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500">
+                            </div>
+                            <span class="text-blue-400 text-sm animate-pulse">Running Neural Inference...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 text-gray-600 text-xs mt-auto border-t border-gray-900">
+        &copy; 2024 Pratyaksha AI Project. Built for Safety. Flask Powered.
+    </footer>
+
+    <script>
+        // Section Switching Logic
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(sec => {
+                sec.classList.remove('active-section');
+                sec.classList.add('hidden-section');
+            });
+            document.getElementById(sectionId).classList.remove('hidden-section');
+            document.getElementById(sectionId).classList.add('active-section');
+        }
+
+        // --- Protect Logic ---
+        const protectInput = document.getElementById('protect-input');
+        const protectDropzone = document.getElementById('protect-dropzone');
+
+        protectInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Show loading
+            protectDropzone.classList.add('hidden');
+            document.getElementById('protect-loading').classList.remove('hidden');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/protect', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                // Hide loading, show result
+                document.getElementById('protect-loading').classList.add('hidden');
+                document.getElementById('protect-result').classList.remove('hidden');
+                document.getElementById('protect-result').classList.add('flex'); // Keep centered layout
+
+                document.getElementById('protected-image-preview').src = data.protected_url;
+                document.getElementById('download-link').href = data.protected_url;
+
+            } catch (err) {
+                console.error(err);
+                alert("Error processing image.");
+                document.getElementById('protect-loading').classList.add('hidden');
+                protectDropzone.classList.remove('hidden');
+            }
+        });
+
+        // --- Verify Logic ---
+        const verifyInput = document.getElementById('verify-input');
+        const verifyDropzone = document.getElementById('verify-dropzone');
+
+        verifyInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Show loading
+            verifyDropzone.classList.add('hidden');
+            document.getElementById('verify-loading').classList.remove('hidden');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/verify', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                // Hide loading, show result
+                document.getElementById('verify-loading').classList.add('hidden');
+                document.getElementById('verify-result').classList.remove('hidden');
+                // document.getElementById('verify-result').classList.add('flex');
+
+                // Update Report
+                const report = data.report;
+                const statusEl = document.getElementById('report-status');
+                const sealEl = document.getElementById('report-seal');
+                const confEl = document.getElementById('report-confidence');
+                const barEl = document.getElementById('confidence-bar');
+
+                statusEl.textContent = report.overall_status;
+                sealEl.textContent = report.seal_status.toUpperCase();
+                confEl.textContent = report.confidence_score;
+
+                // Style based on content
+                if (report.seal_status === 'Broken' || report.overall_status.includes('Tampered')) {
+                    statusEl.classList.remove('text-green-400');
+                    statusEl.classList.add('text-red-500');
+                    sealEl.classList.remove('text-green-400');
+                    sealEl.classList.add('text-red-500');
+                } else {
+                    statusEl.classList.add('text-green-400');
+                    statusEl.classList.remove('text-red-500');
+                    sealEl.classList.add('text-green-400');
+                    sealEl.classList.remove('text-red-500');
+                }
+
+                // Parse confidence for bar width
+                const confVal = parseFloat(report.confidence_score);
+                barEl.style.width = confVal + '%';
+
+                document.getElementById('scan-id').textContent = "#DIESEL-" + Math.floor(Math.random() * 9000 + 1000);
+
+            } catch (err) {
+                console.error(err);
+                alert("Error verifying image.");
+                document.getElementById('verify-loading').classList.add('hidden');
+                verifyDropzone.classList.remove('hidden');
+            }
+        });
+
+    </script>
+</body>
+
+</html>

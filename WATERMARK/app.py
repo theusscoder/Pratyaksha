@@ -317,36 +317,6 @@ def verify():
         },
         'image_url': url_for('serve_image', filename=file.filename)
     })
-def check_dct_watermark(image_path):
-    """
-    Checks for the presence of the mid-frequency DCT signal.
-    """
-    img = cv2.imread(image_path)
-    if img is None:
-        return False
-    
-    h, w, _ = img.shape
-    img_ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)
-    y, _, _ = cv2.split(img_ycrcb)
-    y = np.float32(y)
-    
-    dct_block_size = 8
-    matches = 0
-    total_blocks = 0
-    
-    # Analyze the same (4,4) coefficient modified during protection
-    for i in range(0, h - dct_block_size, dct_block_size):
-        for j in range(0, w - dct_block_size, dct_block_size):
-            block = y[i:i+dct_block_size, j:j+dct_block_size]
-            dct_block = cv2.dct(block)
-            
-            coeff_val = dct_block[4, 4]
-            # Check for the signal magnitude added (±50)
-            if abs(coeff_val) > 25: 
-                matches += 1
-            total_blocks += 1
-            
-    # If more than 30% of blocks contain the signal, the DNA is verified
-    return (matches / total_blocks) > 0.3 if total_blocks > 0 else False
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

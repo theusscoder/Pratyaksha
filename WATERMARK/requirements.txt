@@ -4,3 +4,5 @@ numpy
 torch
 torchvision
 pillow
+pymongo
+ImageHash

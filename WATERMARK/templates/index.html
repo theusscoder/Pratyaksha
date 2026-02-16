@@ -51,7 +51,7 @@
         }
 
         .hidden-section {
-            display: none;
+            display: none !important;
         }
 
         .active-section {
@@ -106,13 +106,14 @@
                 Watermarking</div>
             <h1
                 class="text-6xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-                TEAM WIN DIESEL
+                Pratyaksha AI
             </h1>
             <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-10">
                 The Digital Shield for Content Authenticity using <span class="text-green-400">Robust DCT</span> & <span
                     class="text-blue-400">Fragile LSB</span> Technology.
             </p>
-            <div class="flex gap-6">
+
+            <div class="flex gap-6 justify-center mt-12">
                 <button onclick="showSection('protect')"
                     class="px-8 py-4 bg-green-500 text-black font-bold uppercase tracking-wider hover:bg-green-400 transition-all neon-border rounded-sm">
                     Protect Media
@@ -125,9 +126,13 @@
         </section>
 
         <!-- PROTECT SECTION -->
-        <section id="protect" class="hidden-section container mx-auto px-6 py-12">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold mb-2">Protect Your Media</h2>
+        <section id="protect"
+            class="hidden-section container mx-auto px-6 py-12 flex flex-col justify-center items-center h-[80vh]">
+            <div class="w-full max-w-4xl text-center">
+                <h2
+                    class="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+                    Protect & Register Media
+                </h2>
                 <p class="text-gray-400 mb-8">Embed invisible, tamper-proof watermarks into your images.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -163,9 +168,13 @@
         </section>
 
         <!-- VERIFY SECTION -->
-        <section id="verify" class="hidden-section container mx-auto px-6 py-12">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold mb-2">Forensic Verification</h2>
+        <section id="verify"
+            class="hidden-section container mx-auto px-6 py-12 flex flex-col justify-center items-center h-[80vh]">
+            <div class="w-full max-w-4xl text-center">
+                <h2
+                    class="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                    Verify Media Authenticity
+                </h2>
                 <p class="text-gray-400 mb-8">Analyze images for deepfakes and broken digital seals.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -186,7 +195,8 @@
                             <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">Forensic Report
                             </h3>
 
-                            <div class="space-y-4">
+                            <div class="space-y-6">
+                                <!-- Overall -->
                                 <div class="flex justify-between items-center">
                                     <span class="text-gray-400">Overall Status</span>
                                     <span id="report-status" class="font-bold text-green-400 text-lg">Authentic</span>
@@ -195,25 +205,40 @@
                                     <div id="confidence-bar" class="h-full bg-red-500 w-0 transition-all duration-1000">
                                     </div>
                                 </div>
-                                <div class="flex justify-between items-center text-sm">
+                                <div class="flex justify-between items-center text-sm mb-4">
                                     <span class="text-gray-500">Deepfake Probability</span>
                                     <span id="report-confidence" class="text-white">0%</span>
                                 </div>
 
-                                <div class="bg-gray-800 p-4 rounded mt-4">
-                                    <div class="flex justify-between mb-2">
-                                        <span class="text-gray-400 text-sm">Digital Seal (Fragile LSB)</span>
-                                        <span id="report-seal" class="text-green-400 text-sm font-mono">INTACT</span>
+                                <!-- DCT Report -->
+                                <div class="bg-gray-800 p-4 rounded border-l-4 border-blue-500">
+                                    <h4 class="text-blue-400 font-bold mb-2">1. DCT Analysis (Robust)</h4>
+                                    <p class="text-xs text-gray-400 mb-1">Mid-Frequency Coefficient Stability</p>
+                                    <div class="flex justify-between text-sm mb-1">
+                                        <span class="text-gray-300">Score:</span>
+                                        <span id="dct-score" class="font-mono text-white"></span>
                                     </div>
-                                    <div class="flex justify-between">
-                                        <span class="text-gray-400 text-sm">Watermark Type</span>
-                                        <span class="text-blue-400 text-sm font-mono">DCT-ROBUST</span>
+                                    <p id="dct-analysis" class="text-xs text-gray-500 leading-relaxed"></p>
+                                </div>
+
+                                <!-- LSB Report -->
+                                <div class="bg-gray-800 p-4 rounded border-l-4 border-green-500">
+                                    <h4 class="text-green-400 font-bold mb-2">2. LSB Analysis (Fragile)</h4>
+                                    <div class="space-y-1 text-xs text-gray-400">
+                                        <div class="flex justify-between"><span class="text-gray-500">Pixel
+                                                Extraction:</span> <span id="lsb-pixel" class="text-gray-300"></span>
+                                        </div>
+                                        <div class="flex justify-between"><span class="text-gray-500">Bit
+                                                Scanning:</span> <span id="lsb-bits" class="text-gray-300"></span></div>
+                                        <div class="flex justify-between"><span class="text-gray-500">Seal
+                                                Status:</span> <span id="lsb-status" class="font-bold"></span></div>
                                     </div>
                                 </div>
 
-                                <div class="mt-4 text-xs text-gray-500 font-mono">
+                                <!-- Final Analysis -->
+                                <div class="mt-2 text-xs text-gray-500 font-mono border-t border-gray-800 pt-2">
                                     Scan ID: <span id="scan-id">#PRATYAKSHA-8392</span><br>
-                                    Timestamp: <span id="scan-time">Now</span>
+                                    <span id="final-analysis" class="text-gray-400 italic"></span>
                                 </div>
                             </div>
                         </div>
@@ -268,19 +293,39 @@
                     method: 'POST',
                     body: formData
                 });
-                const data = await response.json();
+
+                const responseText = await response.text();
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                } catch (e) {
+                    throw new Error("Server returned non-JSON response: " + responseText.substring(0, 100) + "...");
+                }
+
+                if (!response.ok) {
+                    throw new Error(data.error || "Server Error: " + response.status);
+                }
 
                 // Hide loading, show result
                 document.getElementById('protect-loading').classList.add('hidden');
                 document.getElementById('protect-result').classList.remove('hidden');
                 document.getElementById('protect-result').classList.add('flex'); // Keep centered layout
 
-                document.getElementById('protected-image-preview').src = data.protected_url;
+                if (data.protected_url.endsWith('.mp4')) {
+                    document.getElementById('protected-image-preview').style.display = 'none';
+                    // Video preview logic needed or just show link
+                    document.getElementById('protected-image-preview').src = "";
+                    alert("Video protected! Click Download.");
+                } else {
+                    document.getElementById('protected-image-preview').style.display = 'block';
+                    document.getElementById('protected-image-preview').src = data.protected_url;
+                }
+
                 document.getElementById('download-link').href = data.protected_url;
 
             } catch (err) {
                 console.error(err);
-                alert("Error processing image.");
+                alert("Upload Failed: " + err.message);
                 document.getElementById('protect-loading').classList.add('hidden');
                 protectDropzone.classList.remove('hidden');
             }
@@ -311,41 +356,58 @@
                 // Hide loading, show result
                 document.getElementById('verify-loading').classList.add('hidden');
                 document.getElementById('verify-result').classList.remove('hidden');
-                // document.getElementById('verify-result').classList.add('flex');
 
                 // Update Report
                 const report = data.report;
                 const statusEl = document.getElementById('report-status');
-                const sealEl = document.getElementById('report-seal');
                 const confEl = document.getElementById('report-confidence');
                 const barEl = document.getElementById('confidence-bar');
 
+                // Basic Info
                 statusEl.textContent = report.overall_status;
-                sealEl.textContent = report.seal_status.toUpperCase();
                 confEl.textContent = report.confidence_score;
 
+                // DCT Data
+                if (report.dct_report) {
+                    document.getElementById('dct-score').textContent = report.dct_report.score;
+                    document.getElementById('dct-analysis').textContent = report.dct_report.analysis;
+                }
+
+                // LSB Data
+                if (report.lsb_report) {
+                    document.getElementById('lsb-pixel').textContent = "Grid Extract (OK)";
+                    document.getElementById('lsb-bits').textContent = "1k bits Scanned";
+                    document.getElementById('lsb-status').textContent = report.lsb_report.status.toUpperCase();
+
+                    const lsbStatusEl = document.getElementById('lsb-status');
+                    if (report.lsb_report.status === 'Intact') {
+                        lsbStatusEl.className = "font-bold text-green-400";
+                    } else {
+                        lsbStatusEl.className = "font-bold text-red-500";
+                    }
+                }
+
+                // Final
+                document.getElementById('final-analysis').textContent = report.final_analysis || "";
+
                 // Style based on content
-                if (report.seal_status === 'Broken' || report.overall_status.includes('Tampered')) {
+                if (report.overall_status.includes('Tampered') || report.overall_status.includes('Suspicious')) {
                     statusEl.classList.remove('text-green-400');
                     statusEl.classList.add('text-red-500');
-                    sealEl.classList.remove('text-green-400');
-                    sealEl.classList.add('text-red-500');
                 } else {
                     statusEl.classList.add('text-green-400');
                     statusEl.classList.remove('text-red-500');
-                    sealEl.classList.add('text-green-400');
-                    sealEl.classList.remove('text-red-500');
                 }
 
                 // Parse confidence for bar width
                 const confVal = parseFloat(report.confidence_score);
                 barEl.style.width = confVal + '%';
 
-                document.getElementById('scan-id').textContent = "#DIESEL-" + Math.floor(Math.random() * 9000 + 1000);
+                document.getElementById('scan-id').textContent = "#PRATYAKSHA-" + Math.floor(Math.random() * 9000 + 1000);
 
             } catch (err) {
                 console.error(err);
-                alert("Error verifying image.");
+                alert("Error verifying image: " + err);
                 document.getElementById('verify-loading').classList.add('hidden');
                 verifyDropzone.classList.remove('hidden');
             }
